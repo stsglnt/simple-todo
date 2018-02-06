@@ -7,7 +7,6 @@ import * as moment from 'moment';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy{
   public taskValue: string | number;
@@ -36,14 +35,24 @@ export class AppComponent implements OnInit, OnDestroy{
     const formatedDate = moment(date).format('DD.MM.YYYY  HH:mm:ss');
     const preSend: ITodos = {
       task: task,
-      date_time: formatedDate
+      date_time: formatedDate,
+      done: false
     };
     this.todoService.addTodo(preSend);
     this.taskValue = '';
     this.dateValue = '';
   }
-  public deleteTodo(todo) {
+
+  public deleteTodo(todo: ITodos) {
     this.todoService.deleteTodo(todo)
+  }
+  public checkAsDone(todo: ITodos, event) {
+    const preSend: ITodos = {
+      task: todo.task,
+      date_time: todo.date_time,
+      done: event.checked
+    };
+    this.todoService.updateTodo(preSend);
   }
 
 }

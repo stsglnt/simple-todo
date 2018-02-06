@@ -30,19 +30,27 @@ export class TodoService {
   public getTodos(): Observable<ITodos[]> {
     return this.todos$.asObservable();
   }
-  public addTodo(event) {
-    this.todosFromStorage.push(event);
+  public addTodo(todo) {
+    this.todosFromStorage.push(todo);
     localStorage.setItem('todos', JSON.stringify(this.todosFromStorage));
     this.todos$.next(this.todosFromStorage);
   }
-  public deleteTodo(event: ITodos) {
+  public updateTodo(todo) {
     this.todosFromStorage.forEach((el, index) => {
-      if(event.task == el.task) {
+      if(todo.task == el.task) {
+        el.done = todo.done;
+      }
+    });
+    localStorage.setItem('todos', JSON.stringify(this.todosFromStorage));
+  }
+
+  public deleteTodo(todo: ITodos) {
+    this.todosFromStorage.forEach((el, index) => {
+      if(todo.task == el.task) {
         this.todosFromStorage.splice(index, 1);
       }
     });
     localStorage.setItem('todos', JSON.stringify(this.todosFromStorage));
     this.todos$.next(this.todosFromStorage);
-
   }
 }

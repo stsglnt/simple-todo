@@ -25,6 +25,7 @@
         <td>{{todo.task}}</td>
         <td>{{todo.date_time}}</td>
         <td style="width: 20%">
+          <mat-checkbox [checked]="todo.done" (change)="checkAsDone(todo, $event)">Done</mat-checkbox>
           <button mat-raised-button color="warn" (click)="deleteTodo(todo)" class="deleteButton" >Delete</button>
         </td>
       </tr>
