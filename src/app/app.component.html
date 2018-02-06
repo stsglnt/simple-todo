@@ -22,7 +22,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let todo of todos" >
-        <td>{{todo.text}}</td>
+        <td>{{todo.task}}</td>
         <td>{{todo.date_time}}</td>
         <td style="width: 20%">
           <button mat-raised-button color="warn" (click)="deleteTodo(todo)" class="deleteButton" >Delete</button>

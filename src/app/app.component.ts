@@ -1,7 +1,6 @@
 import {Component, OnInit, OnDestroy, ViewEncapsulation,} from '@angular/core';
 import {TodoService} from './services/todo.service';
 import {ITodos} from './models/todos';
-import {Observable} from "rxjs/Observable";
 import * as moment from 'moment';
 
 @Component({
@@ -36,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy{
   public addTodo(task, date) {
     const formatedDate = moment(date).format('DD.MM.YYYY  HH:mm:ss');
     const preSend: ITodos = {
-      text: task,
+      task: task,
       date_time: formatedDate
     };
     this.todoService.addTodo(preSend);

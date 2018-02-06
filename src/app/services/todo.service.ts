@@ -35,9 +35,9 @@ export class TodoService {
     localStorage.setItem('todos', JSON.stringify(this.todosFromStorage));
     this.todos$.next(this.todosFromStorage);
   }
-  public deleteTodo(event) {
+  public deleteTodo(event: ITodos) {
     this.todosFromStorage.forEach((el, index) => {
-      if(event.text == el.text) {
+      if(event.task == el.task) {
         this.todosFromStorage.splice(index, 1);
       }
     });

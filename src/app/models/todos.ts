@@ -1,4 +1,4 @@
 export interface ITodos {
-  text: string;
+  task: string;
   date_time: string;
 }
